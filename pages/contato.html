@@ -1,12 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Informações de Contato | Saúde+ </title>
-    <link rel="icon" href="/assets/img/logo.png" type="image/png">
+    <title>Contato | Saúde+</title>
+    <link rel="stylesheet" href="/assets/css/contato.css">
 </head>
 <body>
-    
+
+    <header class="top-menu">
+        <div class="logo">
+            <img src="" alt="Logo Saúde+">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="pesquisar.html">PESQUISAR</a></li>
+                <li><a href="minha-area.html" class="active">MINHA ÁREA</a></li>
+                <li><a href="quem-somos.html">QUEM SOMOS NÓS</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-actions">
+            <a href="perfil.html"><img src="img/user-icon.svg" alt="Perfil"></a>
+            <a href="logout.html"><img src="img/logout.svg" alt="Sair"></a>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página -->
+    <main class="container-contato">
+        <div class="info-clinica">
+
+            <h2>Entre em contato</h2>
+            <p>Preencha o formulário abaixo que responderemos em breve.</p>
+
+            <div class="card-clinica">
+                <img src="img/clinica-mulher.png" alt="Clínica da Mulher">
+
+                <p class="endereco"><strong>Tv. Arildo Ferreira Da Silva, 5 - Barreira</strong></p>
+                <p>Horário de Funcionamento: 07h às 17h</p>
+
+                <div class="btns-contato">
+                    <button class="btn ligar">📞 Ligar</button>
+                    <button class="btn whatsapp">💬 Whatsapp</button>
+                    <button class="btn email">✉️ E-mail</button>
+                </div>
+            </div>
+
+            <div class="acoes">
+                <a href="agendar.html" class="btn-agendar">
+                    Agendar Consulta <span>➜</span>
+                </a>
+                <a href="https://maps.google.com" class="btn-mapa">
+                    Mostrar no mapa 📍
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <form class="form-contato">
+            <label>Nome
+                <input type="text" placeholder="Seu nome completo">
+            </label>
+
+            <div class="linha">
+                <label>E-mail
+                    <input type="email" placeholder="Seu@email.com">
+                </label>
+                <label>Telefone
+                    <input type="tel" placeholder="+55 (21) 99999-9999">
+                </label>
+            </div>
+
+            <label>Assunto
+                <input type="text" placeholder="Ex.: dúvida sobre consulta, informações sobre exames">
+            </label>
+
+            <label>Mensagem
+                <textarea placeholder="Escreva sua mensagem..."></textarea>
+            </label>
+
+            <button class="btn-enviar">Enviar para a clínica</button>
+        </form>
+    </main>
+
+    <footer>
+        © 2025 Saúde+. Todos os direitos reservados.
+    </footer>
+
 </body>
 </html>

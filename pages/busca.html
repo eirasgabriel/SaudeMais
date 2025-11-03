@@ -1,46 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Busca de Clínicas | Saúde+</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="/assets/img/logo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca | Saúde+ </title>
+    <link rel="stylesheet" href="/assets/css/busca.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    
+    <link rel="icon" href="/assets/img/logo.png" type="image/png">
 </head>
 <body>
-  <header>
-    <img src="img/logo.png" alt="Logo Saúde+" class="logo">
-    <nav>
-      <a href="Index.html">PESQUISAR</a>
-      <a href="minhaArea.html">MINHA ÁREA</a>
-      <a href="quemsomos.html">QUEM SOMOS NÓS</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="pesquisa">
-      <p>Busque pelo nome da clínica ou especialidade:</p>
-      <div>
-        <input type="text" id="barra_pesquisa" placeholder="Ex: Clínica da Mulher">
-        <button class="button">Buscar</button>
-      </div>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-notes-medical"></i>
+        </div>
+
+        <nav>
+            <a href="#">PESQUISAR</a>
+            <a href="#">MINHA ÁREA</a>
+            <a href="#">QUEM SOMOS NÓS</a>
+        </nav>
+
+        <div class="icons-header">
+            <i class="fa-regular fa-user"></i>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </div>
+    </header>
+
+    <section class="search-area">
+        <label>Busque pelo nome da clínica ou especialidade :</label>
+        <div class="search-box">
+            <input type="text" placeholder="Clínica da Mulher">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
     </section>
 
-    <section class="clinic-card">
-      <h3>Clínica da Mulher</h3>
-      <p>Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
-      <p>Horário de Funcionamento: 07h às 17h</p>
-      <p>Clínica Municipal especializada em Atenção Integral à Saúde da Mulher do município de Saquarema.</p>
-      <div class="clinic-buttons">
-        <button class="button">Agendar consulta</button>
-        <button class="button">Entre em contato</button>
-        <button class="button">Mostrar no mapa</button>
-      </div>
-    </section>
-  </main>
+    <section class="card-container">
+        <div class="card">
+            <img src="https://via.placeholder.com/300x300/8a00b5/ffffff?text=LOGO" class="card-img">
 
-  <footer>
-    <p>© 2025 Saúde+. Todos os direitos reservados.</p>
-  </footer>
+            <div class="card-info">
+                <h2>Clínica da Mulher</h2>
+                <p>Tv. Arildo Ferreira Da Silva, 5 - Barreiera</p>
+                <p>Horário de Funcionamento: <strong>07h às 17h</strong></p>
+                <p>
+                    Clínica Municipal especializada em Atenção Integral<br>
+                    à Saúde da Mulher do município de Saquarema.
+                </p>
+
+                <button class="btn-main">
+                    Agendar consulta <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="btn-group">
+                    <button class="btn-secondary">
+                        Entre em contato <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+
+                    <button class="btn-secondary">
+                        Mostrar no mapa <i class="fa-solid fa-location-dot"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 Saúde+. Todos os direitos reservados.
+    </footer>
+
 </body>
 </html>

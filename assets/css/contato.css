@@ -1,0 +1,219 @@
+/* ------ RESET BÁSICO ------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+body {
+    background: #F4F8F8;
+    color: #222;
+}
+
+/* ------ MENU SUPERIOR ------ */
+.top-menu {
+    background: #B4F7F3;
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 6px #ccc;
+}
+
+.top-menu nav ul {
+    list-style: none;
+    display: flex;
+    gap: 45px;
+}
+
+.top-menu nav ul a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.top-menu nav .active {
+    border-bottom: 2px solid #26A69A;
+}
+
+.user-actions img {
+    width: 35px;
+    margin-left: 18px;
+    cursor: pointer;
+}
+
+/* ------ CONTEÚDO PRINCIPAL ------ */
+.container-contato {
+    margin: 50px auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* Informações da Clínica */
+.info-clinica {
+    width: 45%;
+}
+
+.info-clinica h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.info-clinica p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.card-clinica {
+    border: 1px solid #aaa;
+    padding: 15px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.card-clinica img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.card-clinica p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.btns-contato {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btns-contato .btn {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #111;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Botões inferiores */
+.acoes {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn-agendar, .btn-mapa {
+    background: #22B6A0;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.btn-mapa {
+    background: #32C9BD;
+}
+
+.btn-agendar:hover,
+.btn-mapa:hover {
+    transform: scale(1.05);
+}
+
+/* ------ FORMULÁRIO ------- */
+.form-contato {
+    width: 55%;
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+}
+
+.form-contato label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-contato input,
+.form-contato textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.linha {
+    display: flex;
+    gap: 20px;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.btn-enviar {
+    width: 100%;
+    background: #22B6A0;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-enviar:hover {
+    background: #1a8777;
+}
+
+/* ------ RODAPÉ ------ */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 18px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* ------ RESPONSIVO ------ */
+@media (max-width: 950px) {
+    .container-contato {
+        flex-direction: column;
+    }
+
+    .info-clinica, .form-contato {
+        width: 100%;
+    }
+
+    .acoes {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 600px) {
+    .linha {
+        flex-direction: column;
+    }
+
+    .top-menu nav ul {
+        gap: 15px;
+    }
+}

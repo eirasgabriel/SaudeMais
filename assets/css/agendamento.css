@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f8ffff;
+}
+
+/* HEADER */
+header {
+    background: #b9fff8;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    margin: 0 18px;
+    color: #0b6f66;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.icons-header i {
+    font-size: 22px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* MAIN */
+.main-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px 50px;
+}
+
+.left-info {
+    width: 32%;
+}
+
+.clinic-img {
+    width: 260px;
+    border-radius: 5px;
+}
+
+.left-info p {
+    margin: 10px 0;
+    color: #333;
+    font-size: 15px;
+}
+
+.btn-block {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    width: 80%;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: #25b3ac;
+    color: #fff;
+    font-size: 15px;
+}
+
+/* FORM BOX */
+.form-box {
+    width: 60%;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    padding: 30px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    row-gap: 18px;
+    column-gap: 20px;
+    align-items: center;
+}
+
+form label {
+    text-align: right;
+    font-weight: 600;
+    color: #333;
+}
+
+form select {
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    padding-left: 8px;
+}
+
+.btn-main {
+    grid-column: span 2;
+    margin: 20px auto 0;
+    padding: 12px 25px;
+    background: #27b59a;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    color: #444;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}

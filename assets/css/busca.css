@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f8ffff;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #b9fff8;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    margin: 0 18px;
+    color: #0a6c63;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header .icons-header i {
+    margin-left: 15px;
+    font-size: 22px;
+    color: #0a6c63;
+    cursor: pointer;
+}
+
+/* ===== SEARCH AREA ===== */
+.search-area {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.search-area label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.search-box {
+    width: 450px;
+    margin: 0 auto;
+    display: flex;
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+}
+
+.search-box button {
+    width: 55px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #0a6c63;
+}
+
+/* ===== CARD ===== */
+.card-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    width: 80%;
+    background: white;
+    border: 2px solid #ccc;
+    display: flex;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.card-img {
+    width: 300px;
+    border-radius: 5px;
+}
+
+.card-info {
+    margin-left: 35px;
+    font-size: 16px;
+    color: #333;
+}
+
+.card-info h2 {
+    margin-bottom: 10px;
+    color: #125f67;
+}
+
+.card-info p {
+    margin: 6px 0;
+}
+
+/* ===== BUTTONS ===== */
+.btn-main {
+    margin: 20px 0;
+    background: #27b59a;
+    padding: 12px 30px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-secondary {
+    background: #1aaab4;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 12px;
+    color: #333;
+    font-size: 14px;
+}

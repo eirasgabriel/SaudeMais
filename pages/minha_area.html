@@ -1,57 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minha Área | Saúde+</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="/assets/img/logo.png" type="image/png">
-</head>
-<body>
-  <header>
-    <img src="img/logo.png" alt="Logo Saúde+" class="logo">
-    <nav>
-      <a href="Index.html">PESQUISAR</a>
-      <a href="minhaArea.html">MINHA ÁREA</a>
-      <a href="quemsomos.html">QUEM SOMOS NÓS</a>
-    </nav>
-  </header>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/minha_area.css">
+    <title>Minha Área | Saúde+</title>
+  </head>
 
-  <main class="area-usuario">
-    <section class="consultas">
-      <h2>CONSULTAS</h2>
-      <div class="consulta-card">
-        <p><strong>24/09/2025 - 14:00</strong> | Clínica dos Olhos</p>
-        <p>Exame Oftalmológico</p>
-        <button class="button">Cancelar</button>
-        <button class="button">Alterar Data</button>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="logo.png" alt="Saúde+">
       </div>
-      <p class="mensagem">Não há mais consultas agendadas para este paciente.</p>
-    </section>
 
-    <section class="exames">
-      <h2>EXAMES</h2>
-      <div class="exame-card">
-        <p><strong>Hemograma Completo</strong></p>
-        <p>HumanizaLab</p>
-        <button class="button">Cancelar</button>
-        <button class="button">Alterar Data</button>
+      <nav>
+        <a href="#">PESQUISAR</a>
+        <a class="active" href="#">MINHA ÁREA</a>
+        <a href="#">QUEM SOMOS NÓS</a>
+      </nav>
+
+      <div class="icons">
+        <div id="profileIcon" class="user-icon">👤</div>
+        <div class="exit-icon">➡️</div>
       </div>
-      <p class="mensagem">Não há mais exames para este paciente.</p>
-    </section>
 
-    <aside class="menu-lateral">
-      <ul>
-        <li><a href="#">Minha conta</a></li>
-        <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Mensagens</a></li>
-        <li><a href="#">Preferências</a></li>
-      </ul>
-    </aside>
-  </main>
+      <div id="dropdownMenu" class="dropdown hidden">
+        <a href="#">Minha conta</a>
+        <a href="#">Mensagens</a>
+        <a href="#">Preferências</a>
+        <a href="#">Ajuda</a>
+      </div>
+    </header>
 
-  <footer>
-    <p>© 2025 Saúde+. Todos os direitos reservados.</p>
-  </footer>
-</body>
+    <main>
+      <section class="box">
+        <h3>CONSULTAS</h3>
+
+        <div class="card">
+          <p><strong>24/09/2025 - 14:00</strong></p>
+          <p>Clínica dos Olhos</p>
+          <p>Exame Oftalmológico</p>
+
+          <div class="actions"></div>
+            <button class="edit">Alterar Data</button>
+            <button class="delete">Cancelar</button>
+          </div>
+        </div>
+
+        <p class="none">Não há mais consultas agendadas para este paciente.</p>
+      </section>
+
+      <section class="box">
+        <h3>EXAMES</h3>
+
+        <div class="card">
+          <p><strong>Hemograma Completo</strong></p>
+          <p>HumanizaLab</p>
+
+          <div class="icons-exams">
+            🗑️ ⬇️
+          </div>
+        </div>
+
+        <p class="none">Não há mais exames para este paciente.</p>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 Saúde+. Todos os direitos reservados.
+    </footer>
+
+    <script>
+      const profileIcon = document.getElementById('profileIcon')
+      const dropdownMenu = document.getElementById('dropdownMenu')
+
+      profileIcon.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden')
+      })
+    </script>
+  </body>
 </html>
