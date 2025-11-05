@@ -1,4 +1,4 @@
-/* PADRÃO */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,6 @@ body {
     background: #f8ffff;
 }
 
-/* ===== HEADER ===== */
 header {
     background: #b9fff8;
     padding: 12px 25px;
@@ -32,14 +31,12 @@ header nav a {
     cursor: pointer;
 }
 
-/* ===== CONTENT ===== */
 .content-wrapper {
     display: flex;
     justify-content: space-between;
     padding: 40px 50px;
 }
 
-/* LADO ESQUERDO */
 .info-container {
     width: 40%;
 }
@@ -64,7 +61,6 @@ header nav a {
     color: #333;
 }
 
-/* BOTÕES */
 .btn-group {
     margin-top: 20px;
     display: flex;
@@ -93,7 +89,6 @@ header nav a {
     background: #27b59a;
 }
 
-/* LADO DIREITO */
 .map-section {
     width: 55%;
     text-align: center;

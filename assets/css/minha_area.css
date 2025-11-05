@@ -5,7 +5,6 @@
     font-family: Arial, sans-serif;
 }
 
-/* HEADER */
 header {
     background-color: #a9f6f1;
     padding: 20px;
@@ -14,6 +13,10 @@ header {
     align-items: center;
     position: relative;
     border-bottom: 4px solid #1ab2a8;
+}
+
+.header .logo img {
+    height: 50px;
 }
 
 nav a {
@@ -34,7 +37,6 @@ nav .active {
     cursor: pointer;
 }
 
-/* DROPDOWN */
 .dropdown {
     position: absolute;
     right: 10px;
