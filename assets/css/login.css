@@ -80,11 +80,11 @@ body {
 .options {
   width: 100%;
   display: flex;
-  justify-content: space-between; /* separa os lados */
+  justify-content: space-between;
   align-items: center;
   font-size: 14px;
   margin-bottom: 25px;
-  gap: 10px; /* evita sobreposição */
+  gap: 10px; 
 }
 
 .left-options {
@@ -115,7 +115,12 @@ body {
   align-items: center;
   gap: 5px;
 }
-
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+}
 .login-button {
     width: 60%;
     padding: 12px;
@@ -172,4 +177,36 @@ footer {
   bottom: 15px;           
   right: 20px;          
   opacity: 0.8;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px; /* espaço para o ícone */
+  padding-left: 20px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  height: 45px;
+  box-sizing: border-box;
+}
+
+.password-wrapper i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.password-wrapper i:hover {
+  color: #26ac98;
 }

@@ -1,51 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperação de Conta | Saúde+ </title>
-    <link rel="stylesheet" href="/assets/css/recovery.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/assets/img/logo.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar Senha | Saúde+</title>
+  <link rel="icon" href="../assets/img/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/recovery.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-    <header>
-        <div class="logo-area"></div>
-        <nav>
-            <a href="#">PESQUISAR</a>
-            <a href="#">MINHA ÁREA</a>
-            <a href="index.html">QUEM SOMOS NÓS</a>
-        </nav>
-        <div class="icons">
-            <div class="user-icon"></div>
-            <div class="logout-icon"></div>
+  <div class="login-container">
+    <div class="login-image"></div>
+
+    <div class="login-form">
+      <h2>Recuperar Senha</h2>
+
+      <form>
+        <p class="info-text">
+          Informe seu e-mail cadastrado para enviarmos um link de redefinição de senha.
+        </p>
+
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="Seu e-mail" required />
         </div>
-    </header>
 
-    <main>
-        <section class="recovery-section">
-            <h2>Recuperar Conta</h2>
-            <p>Esqueceu sua senha? Não se preocupe! Insira seu e-mail e enviaremos instruções para redefini-la.</p>
+        <button class="login-button" id="recuperar-btn" type="button">
+          <span class="text">ENVIAR LINK</span>
+          <span class="icon-circle">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
+        </button>
 
-            <form action="#" method="post" class="form-container">
-                <div class="form-group">
-                    <label for="email">E-mail cadastrado</label>
-                    <input type="email" id="email" name="email" placeholder="exemplo@dominio.com" required>
-                </div>
+        <div class="options">
+          <a href="login.html" class="register">Voltar para o login</a>
+        </div>
+      </form>
 
-                <button type="submit" class="btn-recuperar">Enviar link de recuperação</button>
-            </form>
+      <div class="footer">
+        &copy; 2025 Saúde+. Todos os direitos reservados.
+      </div>
+    </div>
+  </div>
 
-            <p class="voltar-login">
-                Lembrou sua senha? <a href="#">Voltar ao login</a>
-            </p>
-        </section>
-    </main>
+  <script src = "../assets/js/recovery.js">
 
-    <footer>
-        <p>© 2025 Saúde+. Todos os direitos reservados.</p>
-    </footer>
+  </script>
 </body>
 </html>
