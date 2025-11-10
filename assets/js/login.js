@@ -1,26 +1,56 @@
-  const eye = document.querySelector('.password-wrapper i');
-  const senha = document.querySelector('#senha');
+const eye = document.querySelector('.password-wrapper i');
+const senhaInput = document.querySelector('#senha');
 
+if (eye && senhaInput) {
   eye.addEventListener('click', () => {
-    const isPassword = senha.type === 'password';
-    senha.type = isPassword ? 'text' : 'password';
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
     eye.classList.toggle('fa-eye');
     eye.classList.toggle('fa-eye-slash');
   });
+}
+
+async function gerarHash(texto) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(texto);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  return hashHex;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginButton = document.getElementById('login-btn');
   const emailInput = document.getElementById('email');
   const senhaInput = document.getElementById('senha');
 
-  loginButton.addEventListener('click', () => {
+  if (!loginButton || !emailInput || !senhaInput) return;
+
+  loginButton.addEventListener('click', async () => {
     const email = emailInput.value.trim();
     const senha = senhaInput.value.trim();
 
-    if (email && senha) {
-      if (email === "teste@saude.com" && senha === "123456") {
-        window.location.href = "../pages/minha_area.html";
-      }
+    if (!email || !senha) {
+      alert("Por favor, preencha e-mail e senha!");
+      return;
+    }
+
+  
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuario = usuarios.find(u => u.email === email);
+
+    if (!usuario) {
+      alert("Usuário não encontrado!");
+      return;
+    }
+
+    const hashSenha = await gerarHash(senha);
+
+    if (hashSenha === usuario.senha) {
+      alert(`Bem-vindo(a), ${usuario.nome}!`);
+      window.location.href = "../pages/dashboard/minha_area.html";
+    } else {
+      alert("Senha incorreta!");
     }
   });
 });

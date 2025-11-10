@@ -29,7 +29,6 @@ main {
   color: #1a1a1a;
 }
 
-/* ===== CARDS ===== */
 .card {
   border: 2px solid #000;
   padding: 20px;
@@ -64,14 +63,12 @@ main {
   font-size: 20px;
 }
 
-/* ===== TEXTO "NÃO HÁ MAIS..." ===== */
 .none {
   text-align: center;
   color: #a0a0a0;
   margin-top: 20px;
 }
 
-/* ===== RODAPÉ ===== */
 footer {
   background-color: #b5faf0;
   color: #000;

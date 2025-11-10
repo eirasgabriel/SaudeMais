@@ -132,3 +132,16 @@ nav .active {
 .hidden {
   display: none;
 }
+
+header,
+footer {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease-in-out;
+}
+
+header.loaded,
+footer.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
