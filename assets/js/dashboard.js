@@ -52,8 +52,7 @@ async function initLayout() {
     selector: "footer"
   }, "beforeend");
 
-  // Dropdowns e logout
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     const userHeader = document.getElementById("dropdownHeader");
     const userMenu = document.getElementById("dropdownMenu");
     const logoutHeader = document.getElementById("logoutDropdownHeader");
@@ -82,7 +81,7 @@ async function initLayout() {
         window.location.href = loginPath;
       });
     }
-  }, 150);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initLayout);
