@@ -1,134 +1,178 @@
-// ===== PESQUISAR CLÍNICA =====
-function buscarClinica() {
-    const termo = document.getElementById('buscaClinica').value.trim().toLowerCase();
-    const resultado = document.getElementById('resultadoClinica');
+// ==== MOCK DATA ====
+const MOCK_USERS = [
+  {id:'#0902231', nome:'Marllon Rocha', email:'marllon@gmail.com', tipo:'Clientes'},
+  {id:'#0091231', nome:'Isabela Moreira', email:'isabela@gmail.com', tipo:'Clientes'},
+  {id:'#0912412', nome:'Breno Oliveira', email:'breno@gmail.com', tipo:'Médicos'},
+  {id:'#5454534', nome:'Vitor Junior', email:'vitor@gmail.com', tipo:'Recepcionistas'},
+  {id:'#4141555', nome:'Felipe Santos', email:'felipe@gmail.com', tipo:'Administradores'},
+  {id:'#2157777', nome:'Gustavo Oliveira', email:'gustavo@gmail.com', tipo:'Clientes'},
+  {id:'#4141513', nome:'Beatriz Moura', email:'beatriz@gmail.com', tipo:'Clientes'},
+  {id:'#4686589', nome:'Leila Marins', email:'leila@gmail.com', tipo:'Médicos'},
+  {id:'#1424677', nome:'Mauro Fagundes', email:'mauro@gmail.com', tipo:'Médicos'},
+  {id:'#11267577', nome:'Hugo Mendes', email:'hugo@gmail.com', tipo:'Recepcionistas'}
+];
 
-    if (!termo) {
-        //Envolvido em Template String
-        resultado.innerHTML = `<p>Digite o nome de uma clínica para pesquisar.</p>`;
-        return;
-    }
+const DEFAULT_CLINICS = [
+  {id:'#0312943', nome:'Clínica dos Olhos', cnpj:'12.345.678/0001-01'},
+  {id:'#5243665', nome:'Clínica da Mulher', cnpj:'12.345.678/0001-02'},
+  {id:'#0913132', nome:'HumanizaLab', cnpj:'12.345.678/0001-03'},
+  {id:'#5441245', nome:'Centro Municipal de Diagnóstico por Imagem', cnpj:'12.345.678/0001-04'},
+  {id:'#4332211', nome:'Clínica Odontológica Dr. Drude', cnpj:'12.345.678/0001-05'}
+];
 
-    if (termo.includes('mulher')) {
-        //Envolvido em Template String
-        resultado.innerHTML =
-            `<div class="clinica-card">
-                <h3>Clínica da Mulher</h3>
-                <p><strong>Endereço:</strong> Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
-                <p><strong>Horário:</strong> 07h às 17h</p>
-                <button class="btn" onclick="window.open('http://maps.google.com/')">
-                    Ver no Mapa
-                </button>
-            </div>`; //Link do Google Maps
-    } else {
-        resultado.innerHTML = '<p style="color:red;">Nenhuma clínica encontrada com esse nome.</p>';
-    }
-}
+// ==== STORAGE ====
+function saveClinics(arr){ localStorage.setItem('clinics_v1', JSON.stringify(arr)); }
+function loadClinics(){ const raw = localStorage.getItem('clinics_v1'); return raw ? JSON.parse(raw) : [...DEFAULT_CLINICS]; }
 
-// ===== AGENDAR CONSULTA =====
-function agendarConsulta() {
-    const nome = prompt("Digite o nome do paciente:");
-    const data = prompt("Digite a data da consulta (ex: 12/11/2025):");
-    const hora = prompt("Digite o horário (ex: 14:30):");
-
-    if (!nome || !data || !hora) {
-        alert("Preencha todos os campos para agendar.");
-        return;
-    }
-
-    const consulta = { nome, data, hora };
-    const consultas = JSON.parse(localStorage.getItem('consultas') || '[]');
-    consultas.push(consulta);
-    localStorage.setItem('consultas', JSON.stringify(consultas));
-
-    const resultado = document.getElementById('resultadoClinica');
-    
-    //Envolvido em Template String 
-    resultado.innerHTML =
-        `<div class="clinica-card">
-            <h3>Consulta Agendada!</h3>
-            <p><strong>Paciente:</strong> ${nome}</p>
-            <p><strong>Data:</strong> ${data}</p>
-            <p><strong>Hora:</strong> ${hora}</p>
-        </div>`;
-}
-
-// ===== CADASTRAR USUÁRIO =====
-function cadastrarUsuario(event) {
-    event.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const perfil = document.getElementById('perfil').value;
-
-    if (!nome || !email || !perfil) {
-        alert("Preencha todos os campos!");
-        return;
-    }
-
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    usuarios.push({ nome, email, perfil });
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-    exibirUsuarios();
-    event.target.reset();
-}
-
-// ===== EXIBIR USUÁRIOS =====
-function exibirUsuarios() {
-    const lista = document.getElementById('listaUsuarios');
-    if (!lista) return;
-
-    lista.innerHTML = '';
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-    if (usuarios.length === 0) {
-        lista.innerHTML = '<p>Nenhum usuário cadastrado.</p>';
-        return;
-    }
-
-    usuarios.forEach((u, i) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${u.nome}</strong> - ${u.perfil} <br> <small>${u.email}</small>`;
-        li.onclick = () => {
-            if (confirm(`Deseja excluir ${u.nome}?`)) {
-                usuarios.splice(i, 1);
-                localStorage.setItem('usuarios', JSON.stringify(usuarios));
-                exibirUsuarios();
-            }
-        };
-        lista.appendChild(li);
+// ==== TABS ====
+document.querySelectorAll('nav a').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    link.classList.add('active');
+    const tab = link.dataset.tab;
+    ['users','clinics','report'].forEach(id=>{
+      document.getElementById(id).style.display = (id===tab)?'block':'none';
     });
+    if(tab==='users') renderUsersTable();
+    if(tab==='clinics') renderClinicsTable();
+    if(tab==='report') renderReport();
+  });
+});
+
+// ==== USUÁRIOS ====
+const userType = document.getElementById('userType');
+const searchInput = document.getElementById('searchInput');
+const usersTableWrap = document.getElementById('usersTableWrap');
+
+function renderUsersTable(){
+  const type = userType.value;
+  const q = searchInput.value.trim().toLowerCase();
+  const filtered = MOCK_USERS.filter(u =>
+    u.tipo === type &&
+    (u.nome.toLowerCase().includes(q) || u.email.toLowerCase().includes(q) || u.id.toLowerCase().includes(q))
+  );
+  if(filtered.length === 0){
+    usersTableWrap.innerHTML = '<div class="empty">Nenhum usuário encontrado.</div>';
+    return;
+  }
+  let html = '<table><thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Ações</th></tr></thead><tbody>';
+  filtered.forEach(u=>{
+    html += `<tr><td>${u.id}</td><td>${u.nome}</td><td>${u.email}</td><td><button class="btn ghost" onclick="viewUser('${u.id}')">Ver</button></td></tr>`;
+  });
+  html += '</tbody></table>';
+  usersTableWrap.innerHTML = html;
 }
 
-// ===== RELATÓRIOS =====
-function gerarRelatorio() {
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    const consultas = JSON.parse(localStorage.getItem('consultas') || '[]');
-
-    const totalUsuarios = usuarios.length;
-    const medicos = usuarios.filter(u => u.perfil === 'Médico').length;
-    const pacientes = usuarios.filter(u => u.perfil === 'Paciente').length;
-    const totalConsultas = consultas.length;
-
-    const div = document.getElementById('relatorio');
-    
-    //Envolvido em Template String e uso de ${variavel}
-    div.innerHTML =
-        `<h3>Relatório Geral</h3>
-        <p><strong>Usuários cadastrados:</strong> ${totalUsuarios}</p>
-        <p><strong>Médicos:</strong> ${medicos}</p>
-        <p><strong>Pacientes:</strong> ${pacientes}</p>
-        <p><strong>Consultas agendadas:</strong> ${totalConsultas}</p>`;
-
-    if (totalConsultas > 0) {
-        div.innerHTML += `<h4>Últimas Consultas:</h4>`;
-        consultas.slice(-3).forEach(c => {
-            //Envolvido em Template String e uso de ${c.nome}, ${c.data}, ${c.hora}
-            div.innerHTML += `<p>🩺 ${c.nome} - ${c.data} às ${c.hora}</p>`;
-        });
-    }
+function viewUser(id){
+  const u = MOCK_USERS.find(x=>x.id===id);
+  if(!u) return alert('Usuário não encontrado');
+  alert(`ID: ${u.id}\nNome: ${u.nome}\nEmail: ${u.email}\nTipo: ${u.tipo}`);
 }
 
-// Carrega usuários automaticamente se existir lista
-exibirUsuarios();
+userType.addEventListener('change', renderUsersTable);
+searchInput.addEventListener('input', renderUsersTable);
+document.getElementById('refreshUsers').addEventListener('click', ()=>{
+  searchInput.value='';
+  userType.value='Clientes';
+  renderUsersTable();
+});
+
+// ==== CLÍNICAS ====
+let CLINICS = loadClinics();
+const clinicsTableWrap = document.getElementById('clinicsTableWrap');
+
+function renderClinicsTable(){
+  CLINICS = loadClinics();
+  if(CLINICS.length===0){
+    clinicsTableWrap.innerHTML = '<div class="empty">Nenhuma clínica cadastrada.</div>';
+    return;
+  }
+  let html = '<table><thead><tr><th>ID</th><th>Nome</th><th>CNPJ</th><th>Ações</th></tr></thead><tbody>';
+  CLINICS.forEach((c,idx)=>{
+    html += `<tr><td>${c.id}</td><td>${c.nome}</td><td>${c.cnpj}</td>
+      <td><button class="btn ghost" onclick="editClinic(${idx})">Editar</button>
+      <button class="btn danger" onclick="removeClinic(${idx})">Remover</button></td></tr>`;
+  });
+  html += '</tbody></table>';
+  clinicsTableWrap.innerHTML = html;
+}
+
+window.removeClinic = function(idx){
+  if(!confirm('Remover esta clínica?')) return;
+  CLINICS.splice(idx,1);
+  saveClinics(CLINICS);
+  renderClinicsTable();
+}
+
+window.editClinic = function(idx){
+  const c = CLINICS[idx];
+  const newName = prompt('Novo nome da clínica', c.nome);
+  if(newName==null) return;
+  const newCnpj = prompt('Novo CNPJ', c.cnpj);
+  if(newCnpj==null) return;
+  CLINICS[idx] = {...c, nome:newName, cnpj:newCnpj};
+  saveClinics(CLINICS);
+  renderClinicsTable();
+}
+
+document.getElementById('addClinicBtn').addEventListener('click', ()=>{
+  document.getElementById('modal').style.display='block';
+});
+
+document.getElementById('cancelModal').addEventListener('click', ()=>{
+  document.getElementById('modal').style.display='none';
+});
+
+document.getElementById('saveClinic').addEventListener('click', ()=>{
+  const nome = document.getElementById('clinicName').value.trim();
+  const cnpj = document.getElementById('clinicCNPJ').value.trim();
+  if(!nome || !cnpj){ alert('Preencha todos os campos'); return; }
+  const newId = '#'+Math.floor(Math.random()*9000000+1000000);
+  CLINICS.push({id:newId, nome, cnpj});
+  saveClinics(CLINICS);
+  document.getElementById('clinicName').value='';
+  document.getElementById('clinicCNPJ').value='';
+  document.getElementById('modal').style.display='none';
+  renderClinicsTable();
+});
+
+document.getElementById('clearClinics').addEventListener('click', ()=>{
+  if(!confirm('Remover todas as clínicas e restaurar padrão?')) return;
+  localStorage.removeItem('clinics_v1');
+  CLINICS = loadClinics();
+  renderClinicsTable();
+});
+
+// ==== RELATÓRIO ====
+function renderReport(){
+  const clinics = loadClinics();
+  if(clinics.length===0){
+    document.getElementById('reportTableWrap').innerHTML = '<div class="empty">Nenhuma clínica para relatório.</div>';
+    return;
+  }
+  let html = '<table><thead><tr><th>ID</th><th>Nome</th><th>CNPJ</th></tr></thead><tbody>';
+  clinics.forEach(c=>{
+    html += `<tr><td>${c.id}</td><td>${c.nome}</td><td>${c.cnpj}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('reportTableWrap').innerHTML = html;
+}
+
+document.getElementById('downloadCsv').addEventListener('click', ()=>{
+  const clinics = loadClinics();
+  if(clinics.length===0){ alert('Nada para exportar'); return; }
+  const rows = [['ID','Nome','CNPJ'], ...clinics.map(c=>[c.id,c.nome,c.cnpj])];
+  const csv = rows.map(r=>r.join(',')).join('\\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'relatorio_clinicas.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// render inicial
+renderUsersTable();
+renderClinicsTable();

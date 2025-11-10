@@ -1,0 +1,170 @@
+/* === estilo base enviado pelo usuário === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #64C7C7;
+}
+
+/* cabeçalho fixo */
+header {
+  background-color: #A8F7F2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 3px solid #333;
+}
+
+.logo h2 {
+  font-size: 20px;
+  color: #000;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon, .logout-icon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+/* === estilo do painel === */
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 12px;
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #e9f9f9;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  margin-left: 8px;
+}
+
+.select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background-color: #64C7C7;
+  color: #000;
+}
+
+.btn.ghost {
+  background-color: #A8F7F2;
+  border: 2px solid #333;
+  color: #000;
+}
+
+.btn.danger {
+  background-color: #e54747;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: #555;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 300px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
