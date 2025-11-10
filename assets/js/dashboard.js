@@ -1,8 +1,23 @@
+
+function getBasePath() {
+  const pathParts = window.location.pathname.split("/").filter(Boolean);
+
+  const pagesIndex = pathParts.indexOf("pages");
+
+  if (pagesIndex === -1) return "./";
+
+  const depth = pathParts.length - (pagesIndex + 1);
+
+  return "../".repeat(depth);
+}
+
+
 async function loadComponent({ html, css, selector }, position = "beforeend") {
   try {
     const response = await fetch(html);
+    if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+    
     const content = await response.text();
-
     document.body.insertAdjacentHTML(position, content);
 
     if (!document.querySelector(`link[href="${css}"]`)) {
@@ -23,45 +38,51 @@ async function loadComponent({ html, css, selector }, position = "beforeend") {
 }
 
 async function initLayout() {
-  await loadComponent({ html: "../components/header.html", css: "../assets/css/header.css", selector: "header" }, "afterbegin");
-  await loadComponent({ html: "../components/footer.html", css: "../assets/css/footer.css", selector: "footer" }, "beforeend");
+  const base = getBasePath();
 
+  await loadComponent({
+    html: `${base}components/header.html`,
+    css: `${base}assets/css/header.css`,
+    selector: "header"
+  }, "afterbegin");
+
+  await loadComponent({
+    html: `${base}components/footer.html`,
+    css: `${base}assets/css/footer.css`,
+    selector: "footer"
+  }, "beforeend");
+
+  // Dropdowns e logout
   setTimeout(() => {
     const userHeader = document.getElementById("dropdownHeader");
     const userMenu = document.getElementById("dropdownMenu");
-
     const logoutHeader = document.getElementById("logoutDropdownHeader");
     const logoutMenu = document.getElementById("logoutDropdownMenu");
 
     if (userHeader && userMenu) {
-      userHeader.addEventListener("click", () => {
-        userMenu.classList.toggle("show");
-      });
+      userHeader.addEventListener("click", () => userMenu.classList.toggle("show"));
     }
 
     if (logoutHeader && logoutMenu) {
-      logoutHeader.addEventListener("click", () => {
-        logoutMenu.classList.toggle("show");
-      });
+      logoutHeader.addEventListener("click", () => logoutMenu.classList.toggle("show"));
     }
 
     document.addEventListener("click", (event) => {
-      if (!event.target.closest(".dropdown-container") && userMenu) {
+      if (!event.target.closest(".dropdown-container") && userMenu)
         userMenu.classList.remove("show");
-      }
-      if (!event.target.closest(".logout-dropdown-container") && logoutMenu) {
+      if (!event.target.closest(".logout-dropdown-container") && logoutMenu)
         logoutMenu.classList.remove("show");
-      }
     });
 
     const logoutLink = document.getElementById("logoutLink");
     if (logoutLink) {
       logoutLink.addEventListener("click", (e) => {
         e.preventDefault();
-        window.location.href = "../pages/login.html";
+        const loginPath = `${base}pages/login.html`;
+        window.location.href = loginPath;
       });
     }
-  }, 100);
+  }, 150);
 }
 
 document.addEventListener("DOMContentLoaded", initLayout);
