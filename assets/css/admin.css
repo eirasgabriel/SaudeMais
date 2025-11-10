@@ -6,6 +6,8 @@
   font-family: 'Inter', sans-serif; 
 }
 
+
+
 body {
   background-color: #64C7C7; /* Cor de fundo principal */
 }
@@ -20,10 +22,7 @@ header {
   border-bottom: 3px solid #333;
 }
 
-.logo h2 {
-  font-size: 20px;
-  color: #000;
-}
+
 
 /* Navegação e Abas */
 nav a {
@@ -200,3 +199,14 @@ th, td {
   gap: 10px;
   margin-top: 15px;
 }
+
+
+body, header, .container, .panel {
+  background-image: none !important;
+}
+
+.logo img {
+  height: 50px; /* ajusta o tamanho */
+  width: auto;
+}
+
