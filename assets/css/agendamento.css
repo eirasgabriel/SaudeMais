@@ -1,126 +1,267 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f8ffff;
-}
-
-
 header {
-    background: #b9fff8;
-    padding: 12px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #b5faf0;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #26ac98;
+  flex-wrap: wrap;
 }
 
-header nav a {
-    margin: 0 18px;
-    color: #0b6f66;
-    text-decoration: none;
-    font-weight: bold;
+.logo img {
+  height: 60px;
 }
 
-.icons-header i {
-    font-size: 22px;
-    margin-left: 15px;
-    cursor: pointer;
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.logo{
-    height: 70px;
+nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  position: relative;
 }
 
+nav .active {
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+}
+
+.dropdown-container,
+.logout-dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-header,
+.logout-dropdown-header {
+  font-size: 22px;
+  color: #000;
+}
+
+.dropdown-menu,
+.logout-dropdown-menu {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  background-color: #45c7c7;
+  border: 2px solid #000;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.dropdown-menu.show,
+.logout-dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu a,
+.logout-dropdown-menu a {
+  display: block;
+  background: #ddd;
+  color: #000;
+  text-decoration: none;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
+}
+
+.dropdown-menu a:last-child,
+.logout-dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover,
+.logout-dropdown-menu a:hover {
+  background-color: #b5faf0;
+}
+
+.hidden {
+  display: none;
+}
+
+
+header,
+footer {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease-in-out;
+}
+
+header.loaded,
+footer.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  background-color: #b5faf0; /* mesma cor do header */
+  color: #1a1a1a; /* cor do texto combinando */
+  text-align: center;
+  padding: 12px 10px;
+  border-top: 4px solid #26ac98; /* igual à borda inferior do header */
+  font-weight: 500;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/*igual ao cabeçalho */
+footer.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*1. ESTILOS DO CONTEÚDO PRINCIPAL (MAIN-CONTAINER)*/
 .main-container {
-    display: flex;
-    gap: 40px;
-    padding: 40px 50px;
+  /* Habilita o Flexbox para alinhar lado a lado (clínica e formulário) */
+  display: flex;
+  
+  /* Centraliza o contêiner na tela e define um limite de largura */
+  max-width: 1200px;
+  
+  /* 
+     40px (acima) para afastar do cabeçalho
+     auto (lados) para centralizar
+     100px (abaixo) para afastar do rodapé fixo
+  */
+  margin: 40px auto 100px auto; 
+  
+  /* Espaçamento interno lateral */
+  padding: 0 20px; 
+  
+  /* Centraliza o conteúdo (as duas colunas) horizontalmente */
+  justify-content: center; 
+  
+  /* Alinha os itens ao topo do contêiner */
+  align-items: flex-start; 
+  
+  /* Espaçamento entre as duas colunas*/
+  gap: 50px; 
 }
+
+/*2. ESTILOS DOS BLOCOS INTERNOS*/
 
 .left-info {
-    width: 32%;
+  /* Permite que o lado esquerdo ocupe mais espaço*/
+  flex: 1; 
+  /* Garante que o texto dentro seja alinhado a esquerda */
+  text-align: left; 
 }
 
 .clinic-img {
-    width: 260px;
-    border-radius: 5px;
-}
-
-.left-info p {
-    margin: 10px 0;
-    color: #333;
-    font-size: 15px;
+  /* Torna a imagem responsiva */
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .btn-block {
-    margin-top: 20px;
+  /* Alinha os botões lado a lado e cria espaço entre eles */
+  display: flex;
+  gap: 15px; 
+  margin-top: 25px; 
 }
-
-.btn-secondary {
-    width: 80%;
-    margin-bottom: 12px;
-    padding: 12px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    background: #25b3ac;
-    color: #fff;
-    font-size: 15px;
-}
-
 
 .form-box {
-    width: 60%;
-    background: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 4px;
-    padding: 30px;
+  /*largura ideal para o formulário */
+  max-width: 450px; 
+  width: 100%;
+  /*destacar o formulário */
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
 }
 
-form {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    row-gap: 18px;
-    column-gap: 20px;
-    align-items: center;
+/*Flexbox ao formulário para melhor controle dos elementos em coluna */
+#formAgendamento {
+  display: flex;
+  flex-direction: column; /* Coloca cada elemento em sua própria linha */
+  gap: 15px; /* Adiciona um bom espaçamento entre cada item do formulário */
 }
 
-form label {
-    text-align: right;
-    font-weight: 600;
-    color: #333;
+/* Estilizando os rotulos e selects para melhor separação */
+#formAgendamento label {
+  font-weight: bold;
+  margin-top: 5px; /*espaço acima do rótulo */
 }
 
-form select {
-    height: 35px;
-    border-radius: 4px;
-    border: 2px solid #000000;
-    padding-left: 8px;
+/* Aplica um espaçamento interno nos campos de seleção */
+#formAgendamento select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%; /* Garante que ocupe a largura total */
 }
 
-.btn-main {
-    grid-column: span 2;
-    margin: 20px auto 0;
-    padding: 12px 25px;
-    background: #27b59a;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+/* Garante que o botão de agendamento tenha um bom espaçamento superior */
+#formAgendamento .btn-main {
+  margin-top: 15px;
+
 }
 
 
-footer {
-    text-align: center;
-    color: #444;
-    margin-top: 200px;
-    padding-bottom: 20px;
+/*3. MEDIA QUERY PARA RESPONSIVIDADE (Telas Menores)*/
+
+@media (max-width: 992px) {
+  .main-container {
+    /* muda para empilhar verticalmente em telas menores */
+    flex-direction: column; 
+    /* centraliza os itens empilhados*/
+    align-items: center; 
+    /* aumenta a margem entre a clínica e o formulário */
+    gap: 40px; 
+    /* ajusta a margem superior */
+    margin-top: 30px; 
+  }
+  
+  .left-info,
+  .form-box {
+    /*permite que os blocos ocupem a largura total em telas pequenas */
+    width: 100%; 
+    max-width: 600px; /*limite máximo */
+  }
+
+  .btn-block {
+    /*telas muito pequenas, empilha os botões se necessário */
+    flex-wrap: wrap; 
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
 }

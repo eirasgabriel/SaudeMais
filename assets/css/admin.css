@@ -1,16 +1,16 @@
-/* === estilo base enviado pelo usuário === */
+/* === estilo base global === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif; 
 }
 
 body {
-  background-color: #64C7C7;
+  background-color: #64C7C7; /* Cor de fundo principal */
 }
 
-/* cabeçalho fixo */
+/*ESTILOS DO CABEÇALHO (HEADER.CSS)*/
 header {
   background-color: #A8F7F2;
   display: flex;
@@ -25,11 +25,13 @@ header {
   color: #000;
 }
 
+/* Navegação e Abas */
 nav a {
   margin: 0 15px;
   text-decoration: none;
   color: #000;
   font-weight: 600;
+  transition: text-decoration 0.2s; /* Adicionado para suavizar o efeito */
 }
 
 nav a.active {
@@ -47,14 +49,15 @@ nav a.active {
   height: 30px;
   border: 2px solid #000;
   border-radius: 50%;
+  cursor: pointer; /* Adicionado para indicar interatividade */
 }
 
-/* === estilo do painel === */
+/*ESTILOS DO PAINEL DE ADMIN (ADMIN.CSS)*/
 .container {
   max-width: 1100px;
   margin: 30px auto;
   padding: 20px;
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255,255,255,0.15); /* Fundo translúcido */
   border-radius: 12px;
 }
 
@@ -92,25 +95,32 @@ nav a.active {
   outline: none;
   background: transparent;
   margin-left: 8px;
+  flex-grow: 1; /* Permite que o input preencha o espaço */
 }
 
 .select {
   padding: 6px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  cursor: pointer;
 }
 
+/* Botões */
 .btn {
   padding: 8px 14px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  transition: background-color 0.2s; /* Transição para feedback visual */
 }
 
 .btn.primary {
   background-color: #64C7C7;
   color: #000;
+}
+.btn.primary:hover {
+  background-color: #4FB0B0;
 }
 
 .btn.ghost {
@@ -118,12 +128,19 @@ nav a.active {
   border: 2px solid #333;
   color: #000;
 }
+.btn.ghost:hover {
+  background-color: #8CE0DB;
+}
 
 .btn.danger {
   background-color: #e54747;
   color: #fff;
 }
+.btn.danger:hover {
+  background-color: #CC3F3F;
+}
 
+/* Tabelas */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -139,8 +156,10 @@ th, td {
   padding: 20px;
   text-align: center;
   color: #555;
+  font-style: italic;
 }
 
+/* Modais (janelas pop-up) */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -148,6 +167,7 @@ th, td {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
 }
 
 .modal {
@@ -163,8 +183,20 @@ th, td {
   margin-bottom: 10px;
 }
 
+.form-row label {
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.form-row input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  margin-top: 15px;
 }

@@ -1,70 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento | Saúde+ </title>
-    <link rel="stylesheet" href="../assets/css/agendamento.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" href="../assets/img/logo.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento | Saúde+</title>
+
+  <link rel="stylesheet" href="../../assets/css/agendamento.css">
+  <script src="../../assets/js/agendamento.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="../assets/img/logo.png" type="image/png">
 </head>
+
 <body>
-    <div id="header-placeholder">
-  
+  <header id="main-header" class="loaded">
+    <div class="logo">
+      <img src="../../assets/img/logo.png" alt="Logo Saúde+">
     </div>
 
-<section class="main-container">
+    <nav>
+      <a href="#">Início</a>
+      <a href="#" class="active">Agendamento</a>
+      <a href="#">Clínicas</a>
+      <a href="#">Usuários</a>
+      <a href="#">Relatórios</a>
+    </nav>
 
-    <div class="left-info">
-        <img src="../assets/img/clinica.jpg" class="clinic-img">
-        
-        <h2>Clínica da Mulher</h2>
-        <p>Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
-        <p><strong>Horário de Funcionamento:</strong><br>07h às 17h</p>
-        <p>
-            Clínica Municipal especializada em Atenção Integral<br>
-            à Saúde da Mulher do município de Saquarema.
-        </p>
-
-        <div class="btn-block">
-            <button class="btn-secondary">Entre em contato <i class="fa-brands fa-whatsapp"></i></button>
-            <button class="btn-secondary">Mostrar no mapa <i class="fa-solid fa-location-dot"></i></button>
+    <div class="header-icons">
+      <div class="dropdown-container">
+        <i class="fa-solid fa-user dropdown-header"></i>
+        <div class="dropdown-menu hidden" id="userMenu">
+          <a href="#">Meu Perfil</a>
+          <a href="#">Configurações</a>
+          <a href="#">Ajuda</a>
         </div>
-    </div>
+      </div>
 
+      <div class="logout-dropdown-container">
+        <i class="fa-solid fa-right-from-bracket logout-dropdown-header"></i>
+        <div class="logout-dropdown-menu hidden" id="logoutMenu">
+          <a href="#">Sair da Conta</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="main-container">
+    <div class="left-info">
+      <img src="../../assets/img/clinica.jpg" alt="Clínica da Mulher" class="clinic-img">
+      <h2>Clínica da Mulher</h2>
+      <p>Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
+      <p><strong>Horário de Funcionamento:</strong><br>07h às 17h</p>
+      <p>Clínica Municipal especializada em Atenção Integral<br>à Saúde da Mulher do município de Saquarema.</p>
+
+      <div class="btn-block">
+        <button id="btnContato" class="btn-secondary">Entre em contato <i class="fa-brands fa-whatsapp"></i></button>
+        <button id="btnMapa" class="btn-secondary">Mostrar no mapa <i class="fa-solid fa-location-dot"></i></button>
+      </div>
+    </div>
 
     <div class="form-box">
-        <form>
-            <label>Especialidade :</label>
-            <select>
-                <option> - - - - - </option>
-            </select>
+      <form id="formAgendamento">
+        <label for="especialidade">Especialidade :</label>
+        <select id="especialidade" required>
+          <option value="">Selecione...</option>
+          <option value="ginecologia">Ginecologia</option>
+          <option value="obstetricia">Obstetrícia</option>
+          <option value="mastologia">Mastologia</option>
+        </select>
 
-            <label>Médico(a) :</label>
-            <select>
-                <option> - - - - - </option>
-            </select>
+        <label for="medico">Médico(a) :</label>
+        <select id="medico" required>
+          <option value="">Selecione uma especialidade</option>
+        </select>
 
-            <label>Datas Disponíveis :</label>
-            <select>
-                <option> - - - - - </option>
-            </select>
+        <label for="data">Datas Disponíveis :</label>
+        <select id="data" required>
+          <option value="">Selecione um médico</option>
+        </select>
 
-            <label>Horários disponíveis :</label>
-            <select>
-                <option> - - - - - </option>
-            </select>
+        <label for="horario">Horários disponíveis :</label>
+        <select id="horario" required>
+          <option value="">Selecione uma data</option>
+        </select>
 
-            <button class="btn-main">Agendar Consulta <i class="fa-solid fa-arrow-right"></i></button>
-        </form>
+        <button type="submit" class="btn-main">Agendar Consulta <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
     </div>
+  </section>
 
-</section>
+  <footer class="loaded">
+    <p>&copy; 2025 Saúde+ | Todos os direitos reservados</p>
+  </footer>
 
-
-<script src="../assets/js/app.js"></script>
-<script src="../assets/js/header.js"></script>
-
+  <script src="../../assets/js/agendamento.js"></script>
 </body>
 </html>
