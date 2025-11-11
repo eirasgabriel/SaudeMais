@@ -10,47 +10,21 @@
 </head>
 <body>
     <div id="header-placeholder">
-  
     </div>
 
     <section class="search-area">
         <label>Busque pelo nome da clínica ou especialidade :</label>
         <div class="search-box">
-            <input type="text" placeholder="Clínica da Mulher">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input id="search-input" type="text" placeholder="Clínica da Mulher">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </section>
 
-    <section class="card-container">
-        <div class="card">
-            <img src="../../assets/img/clinica.jpg" class="card-img">
-
-            <div class="card-info">
-                <h2>Clínica da Mulher</h2>
-                <p>Tv. Arildo Ferreira Da Silva, 5 - Barreiera</p>
-                <p>Horário de Funcionamento: <strong>07h às 17h</strong></p>
-                <p>
-                    Clínica Municipal especializada em Atenção Integral<br>
-                    à Saúde da Mulher do município de Saquarema.
-                </p>
-
-                <button class="btn-main">
-                    Agendar consulta <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <div class="btn-group">
-                    <button class="btn-secondary">
-                        Entre em contato <i class="fa-brands fa-whatsapp"></i>
-                    </button>
-
-                    <button class="btn-secondary">
-                        Mostrar no mapa <i class="fa-solid fa-location-dot"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+    <section id="cards" class="card-container">
+        <!-- Os cards serão inseridos dinamicamente aqui -->
     </section>
-    
-<script src="../../assets/js/dashboard.js"></script>
+
+    <script src = "../../assets/js/busca.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
 </body>
 </html>
