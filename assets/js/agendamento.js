@@ -1,3 +1,6 @@
+// ================================================
+// BANCO DE DADOS DAS CLÍNICAS
+// ================================================
 const clinicas = [
   {
     id: "clinicamulher",
@@ -9,7 +12,6 @@ const clinicas = [
     whatsapp: "5522999611638",
     telefone: "5522999611638",
     email: "contato@clinicadamulher.com",
-    mapa: "https://maps.google.com/?q=Clínica+da+Mulher+Saquarema"
   },
   {
     id: "capsad",
@@ -21,14 +23,14 @@ const clinicas = [
     whatsapp: "5522999999999",
     telefone: "5522999999999",
     email: "contato@capsad.com",
-    mapa: "https://maps.google.com/?q=CAPS+AD+Saquarema"
-  }
+  },
 ];
 
 // ================================================
 // FUNÇÃO PRINCIPAL
 // ================================================
 document.addEventListener("DOMContentLoaded", () => {
+  // Elementos do DOM
   const especialidadeSelect = document.getElementById("especialidade");
   const medicoSelect = document.getElementById("medico");
   const dataSelect = document.getElementById("data");
@@ -37,28 +39,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const contatoBtn = document.getElementById("btnContato");
   const mapaBtn = document.getElementById("btnMapa");
 
+  // Identifica clínica
   const params = new URLSearchParams(window.location.search);
   const clinicaId = params.get("clinica") || localStorage.getItem("selectedClinica");
+  const clinicaSelecionada = clinicas.find(c => c.id === clinicaId);
 
-  let clinicaSelecionada = clinicas.find(c => c.id === clinicaId);
+  // ================================================
+  // EXIBE DADOS DA CLÍNICA
+  // ================================================
   if (clinicaSelecionada) {
+    localStorage.setItem("selectedClinica", clinicaSelecionada.id); // fallback
+
     document.getElementById("ag-img").src = clinicaSelecionada.imagem;
     document.getElementById("ag-nome").textContent = clinicaSelecionada.nome;
     document.getElementById("ag-endereco").textContent = clinicaSelecionada.endereco;
     document.getElementById("ag-horario").textContent = clinicaSelecionada.horario;
     document.getElementById("ag-descricao").textContent = clinicaSelecionada.descricao;
 
-
-    contatoBtn.onclick = () => {
-      localStorage.setItem("selectedClinica", clinicaSelecionada.id); // fallback
+    // Botão "Entre em contato"
+    contatoBtn.addEventListener("click", () => {
       window.location.href = `../../pages/dashboard/contato.html?clinica=${clinicaSelecionada.id}`;
-    };
+    });
 
-    mapaBtn.onclick = () => {
-      window.open(clinicaSelecionada.mapa, "_blank");
-    };
+    // Botão "Mostrar no mapa"
+    mapaBtn.addEventListener("click", () => {
+      window.location.href = `../../pages/dashboard/localizacao.html?clinica=${clinicaSelecionada.id}`;
+    });
+  } else {
+    console.warn("[Agendamento] Nenhuma clínica correspondente encontrada.");
   }
 
+  // ================================================
+  // DADOS DAS ESPECIALIDADES
+  // ================================================
   const dados = {
     ginecologia: {
       medicos: ["Dra. Ana Paula", "Dr. Carlos Silva"],
@@ -85,12 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
     medicoSelect.innerHTML = `<option value="">Selecione...</option>`;
     dataSelect.innerHTML = `<option value="">Selecione um médico</option>`;
     horarioSelect.innerHTML = `<option value="">Selecione uma data</option>`;
+
     if (esp && dados[esp]) {
       dados[esp].medicos.forEach(medico => {
-        const option = document.createElement("option");
-        option.textContent = medico;
-        option.value = medico;
-        medicoSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = medico;
+        opt.textContent = medico;
+        medicoSelect.appendChild(opt);
       });
     }
   });
@@ -99,12 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const esp = especialidadeSelect.value;
     dataSelect.innerHTML = `<option value="">Selecione...</option>`;
     horarioSelect.innerHTML = `<option value="">Selecione uma data</option>`;
+
     if (esp && dados[esp]) {
       dados[esp].datas.forEach(data => {
-        const option = document.createElement("option");
-        option.textContent = data;
-        option.value = data;
-        dataSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = data;
+        opt.textContent = data;
+        dataSelect.appendChild(opt);
       });
     }
   });
@@ -112,12 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
   dataSelect.addEventListener("change", () => {
     const esp = especialidadeSelect.value;
     horarioSelect.innerHTML = `<option value="">Selecione...</option>`;
+
     if (esp && dados[esp]) {
       dados[esp].horarios.forEach(horario => {
-        const option = document.createElement("option");
-        option.textContent = horario;
-        option.value = horario;
-        horarioSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = horario;
+        opt.textContent = horario;
+        horarioSelect.appendChild(opt);
       });
     }
   });
@@ -125,15 +141,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================================================
   // FORMULÁRIO DE AGENDAMENTO
   // ================================================
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const esp = especialidadeSelect.value;
     const med = medicoSelect.value;
     const dat = dataSelect.value;
     const hor = horarioSelect.value;
 
     if (!esp || !med || !dat || !hor) {
-      alert("Por favor, preencha todos os campos!");
+      alert("⚠️ Por favor, preencha todos os campos antes de agendar!");
       return;
     }
 
@@ -149,7 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
     agendamentos.push(novoAgendamento);
     localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
-    alert("Consulta agendada com sucesso!");
+
+    alert("✅ Consulta agendada com sucesso!");
     form.reset();
   });
 });
