@@ -5,8 +5,6 @@ const clinicas = [
     horario: "07h da manhã às 17h da tarde",
     descricao: "Clínica Municipal especializada em Atenção Integral à Saúde da Mulher do município de Saquarema.",
     imagem: "../../assets/img/clinicadamulher.jpg",
-    whatsapp: "5522999611638",
-    mapa: "https://www.google.com/maps?q=Tv.+Arildo+Ferreira+Da+Silva,+5+-+Barreira,+Saquarema"
   },
   {
     nome: "Centro de Atenção Psicossocial de Saquarema – CAPS AD",
@@ -14,8 +12,6 @@ const clinicas = [
     horario: "08h da manhã às 17h da tarde",
     descricao: "Clínica de Saúde especializada em atendimento psicossocial.",
     imagem: "../../assets/img/caps.png",
-    whatsapp: "5522999999999",
-    mapa: "https://www.google.com/maps?q=Rua+Adolfo+Bravo,+28+-+Bacaxá,+Saquarema"
   }
 ];
 
@@ -46,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.open(`https://wa.me/${clinicaSelecionada.whatsapp}`, "_blank");
       };
       mapaBtn.onclick = () => {
-        window.open(clinicaSelecionada.mapa, "_blank");
+         window.open(clinicaSelecionada.mapa, "_blank");
       };
     }
   }
