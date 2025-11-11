@@ -9,26 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
   <body>
-  <body>
-    <div id="header-placeholder">
-  
-    </div>
+    <div id="header-placeholder"></div>
     <main>
       <section class="box consultas">
         <h3>CONSULTAS</h3>
-        <div class="card">
-          <div class="info">
-            <p><strong>24/09/2025 - 14:00</strong></p>
-            <p>Clínica dos Olhos</p>
-            <p>Exame Oftalmológico</p>
-          </div>
-          <div class="actions">
-            <button class="edit">Alterar Data</button>
-            <button class="delete">Cancelar</button>
-          </div>
-        </div>
-        <p class="none">Não há mais consultas agendadas para este paciente.</p>
+        <div id="lista-consultas"></div>
+        <p class="none" id="sem-consultas">Não há mais consultas agendadas para este paciente.</p>
       </section>
+
       <section class="box exames">
         <h3>EXAMES</h3>
         <div class="card">
@@ -44,7 +32,6 @@
         <p class="none">Não há mais exames para este paciente.</p>
       </section>
     </main>
-
     <script src="../../assets/js/dashboard.js"></script>
   </body>
 </html>

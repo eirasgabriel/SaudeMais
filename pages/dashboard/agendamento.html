@@ -10,19 +10,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../assets/img/logo.png" type="image/png">
 </head>
-
-<body>
+<body></body>
   <header id="main-header" class="loaded">
     <div class="logo">
       <img src="../../assets/img/logo.png" alt="Logo Saúde+">
     </div>
-
     <nav>
       <a href="#">Início</a>
       <a href="#" class="active">Agendamento</a>
       <a href="#">Clínicas</a>
     </nav>
-
     <div class="header-icons">
       <div class="dropdown-container">
         <i class="fa-solid fa-user dropdown-header"></i>
@@ -32,7 +29,6 @@
           <a href="#">Ajuda</a>
         </div>
       </div>
-
       <div class="logout-dropdown-container">
         <i class="fa-solid fa-right-from-bracket logout-dropdown-header"></i>
         <div class="logout-dropdown-menu hidden" id="logoutMenu">
@@ -44,15 +40,21 @@
 
   <section class="main-container">
     <div class="left-info">
-      <img src="../../assets/img/clinica.jpg" alt="Clínica da Mulher" class="clinic-img">
-      <h2>Clínica da Mulher</h2>
-      <p>Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
-      <p><strong>Horário de Funcionamento:</strong><br>07h às 17h</p>
-      <p>Clínica Municipal especializada em Atenção Integral<br>à Saúde da Mulher do município de Saquarema.</p>
-
+      <img id="ag-img" src="" alt="Clínica" class="clinic-img">
+      <h2 id="ag-nome"></h2>
+      <p id="ag-endereco"></p>
+      <p>
+        <strong>Horário de Funcionamento:</strong><br>
+        <span id="ag-horario"></span>
+      </p>
+      <p id="ag-descricao"></p>
       <div class="btn-block">
-        <button id="btnContato" class="btn-secondary">Entre em contato <i class="fa-brands fa-whatsapp"></i></button>
-        <button id="btnMapa" class="btn-secondary">Mostrar no mapa <i class="fa-solid fa-location-dot"></i></button>
+        <button id="btnContato" class="btn-secondary">
+          Entre em contato <i class="fa-brands fa-whatsapp"></i>
+        </button>
+        <button id="btnMapa" class="btn-secondary">
+          Mostrar no mapa <i class="fa-solid fa-location-dot"></i>
+        </button>
       </div>
     </div>
 
@@ -81,7 +83,9 @@
           <option value="">Selecione uma data</option>
         </select>
 
-        <button type="submit" class="btn-main">Agendar Consulta <i class="fa-solid fa-arrow-right"></i></button>
+        <button type="submit" class="btn-main">
+          Agendar Consulta <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </form>
     </div>
   </section>
