@@ -1,50 +1,61 @@
 const clinicas = [
   {
+    id: "clinicamulher",
     nome: "Clínica da Mulher",
     endereco: "Tv. Arildo Ferreira Da Silva, 5 - Barreira",
     horario: "07h da manhã às 17h da tarde",
     descricao: "Clínica Municipal especializada em Atenção Integral à Saúde da Mulher do município de Saquarema.",
     imagem: "../../assets/img/clinicadamulher.jpg",
+    whatsapp: "5522999611638",
+    telefone: "5522999611638",
+    email: "contato@clinicadamulher.com",
+    mapa: "https://maps.google.com/?q=Clínica+da+Mulher+Saquarema"
   },
   {
+    id: "capsad",
     nome: "Centro de Atenção Psicossocial de Saquarema – CAPS AD",
     endereco: "Rua Adolfo Bravo, n° 28 - Bacaxá",
     horario: "08h da manhã às 17h da tarde",
     descricao: "Clínica de Saúde especializada em atendimento psicossocial.",
     imagem: "../../assets/img/caps.png",
+    whatsapp: "5522999999999",
+    telefone: "5522999999999",
+    email: "contato@capsad.com",
+    mapa: "https://maps.google.com/?q=CAPS+AD+Saquarema"
   }
 ];
 
+// ================================================
+// FUNÇÃO PRINCIPAL
+// ================================================
 document.addEventListener("DOMContentLoaded", () => {
   const especialidadeSelect = document.getElementById("especialidade");
   const medicoSelect = document.getElementById("medico");
   const dataSelect = document.getElementById("data");
   const horarioSelect = document.getElementById("horario");
   const form = document.getElementById("formAgendamento");
-  const userMenu = document.getElementById("userMenu");
-  const logoutMenu = document.getElementById("logoutMenu");
   const contatoBtn = document.getElementById("btnContato");
   const mapaBtn = document.getElementById("btnMapa");
 
   const params = new URLSearchParams(window.location.search);
-  const nomeClinica = params.get("clinica");
-  let clinicaSelecionada = null;
+  const clinicaId = params.get("clinica") || localStorage.getItem("selectedClinica");
 
-  if (nomeClinica) {
-    clinicaSelecionada = clinicas.find(c => c.nome === nomeClinica);
-    if (clinicaSelecionada) {
-      document.getElementById("ag-img").src = clinicaSelecionada.imagem;
-      document.getElementById("ag-nome").textContent = clinicaSelecionada.nome;
-      document.getElementById("ag-endereco").textContent = clinicaSelecionada.endereco;
-      document.getElementById("ag-horario").textContent = clinicaSelecionada.horario;
-      document.getElementById("ag-descricao").textContent = clinicaSelecionada.descricao;
-      contatoBtn.onclick = () => {
-        window.open(`https://wa.me/${clinicaSelecionada.whatsapp}`, "_blank");
-      };
-      mapaBtn.onclick = () => {
-         window.open(clinicaSelecionada.mapa, "_blank");
-      };
-    }
+  let clinicaSelecionada = clinicas.find(c => c.id === clinicaId);
+  if (clinicaSelecionada) {
+    document.getElementById("ag-img").src = clinicaSelecionada.imagem;
+    document.getElementById("ag-nome").textContent = clinicaSelecionada.nome;
+    document.getElementById("ag-endereco").textContent = clinicaSelecionada.endereco;
+    document.getElementById("ag-horario").textContent = clinicaSelecionada.horario;
+    document.getElementById("ag-descricao").textContent = clinicaSelecionada.descricao;
+
+    contatoBtn.onclick = () => {
+      localStorage.setItem("selectedClinica", clinicaSelecionada.id); // fallback
+      window.location.href = `../../pages/dashboard/contato.html?clinica=${clinicaSelecionada.id}`;
+    };
+
+    mapaBtn.onclick = () => {
+      window.open(clinicaSelecionada.mapa, "_blank");
+    };
   }
 
   const dados = {
@@ -65,6 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // ================================================
+  // EVENTOS DOS SELECTS
+  // ================================================
   especialidadeSelect.addEventListener("change", () => {
     const esp = especialidadeSelect.value;
     medicoSelect.innerHTML = `<option value="">Selecione...</option>`;
@@ -107,16 +121,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ================================================
+  // FORMULÁRIO DE AGENDAMENTO
+  // ================================================
   form.addEventListener("submit", e => {
     e.preventDefault();
     const esp = especialidadeSelect.value;
     const med = medicoSelect.value;
     const dat = dataSelect.value;
     const hor = horarioSelect.value;
+
     if (!esp || !med || !dat || !hor) {
       alert("Por favor, preencha todos os campos!");
       return;
     }
+
     const novoAgendamento = {
       clinica: clinicaSelecionada ? clinicaSelecionada.nome : "Clínica não identificada",
       especialidade: esp,
@@ -125,27 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
       horario: hor,
       criadoEm: new Date().toLocaleString()
     };
+
     const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
     agendamentos.push(novoAgendamento);
     localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
     alert("Consulta agendada com sucesso!");
     form.reset();
-  });
-
-  document.querySelector(".dropdown-container").addEventListener("click", () => {
-    userMenu.classList.toggle("show");
-    logoutMenu.classList.remove("show");
-  });
-
-  document.querySelector(".logout-dropdown-container").addEventListener("click", () => {
-    logoutMenu.classList.toggle("show");
-    userMenu.classList.remove("show");
-  });
-
-  document.addEventListener("click", e => {
-    if (!e.target.closest(".dropdown-container") && !e.target.closest(".logout-dropdown-container")) {
-      userMenu.classList.remove("show");
-      logoutMenu.classList.remove("show");
-    }
   });
 });
