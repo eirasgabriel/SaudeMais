@@ -1,43 +1,48 @@
-   const clinicas = [
-        {
-            nome: "Clínica da Mulher",
-            endereco: "Tv. Arildo Ferreira Da Silva, 5 - Barreiera",
-            horario: "07h às 17h",
-            descricao: "Clínica Municipal especializada em Atenção Integral à Saúde da Mulher do município de Saquarema.",
-            imagem: "../../assets/img/clinica.jpg",
-            whatsapp: "https://wa.me/552199999999",
-            mapa: "https://maps.google.com"
-        },
-    ];
+const clinicas = [
+    {
+        nome: "Clínica da Mulher",
+        endereco: "Tv. Arildo Ferreira Da Silva, 5 - Barreira",
+        horario: "07h da manhã às 17h da tarde",
+        descricao: "Clínica Municipal especializada em Atenção Integral à Saúde da Mulher do município de Saquarema.",
+        imagem: "../../assets/img/clinicadamulher.jpg",
+    },
+    {
+        nome: "Centro de Atenção Psicossocial de Saquarema – CAPS",
+        endereco: "Rua Adolfo Bravo, n° 28 - Bacaxá",
+        horario: "08h da manhã às 17h da tarde",
+        descricao: "Clínica de Saúde especializada em atendimento psicossocial, oferecendo suporte, acompanhamento e cuidado em saúde mental aos moradores de Saquarema.",
+        imagem: "../../assets/img/caps.jpg",
+    },
+];
 
-    function criarCard(clinica) {
-        return `
-        <div class="card">
-            <img src="${clinica.imagem}" class="card-img">
+function criarCard(clinica) {
+    return `
+    <div class="card">
+        <img src="${clinica.imagem}" class="card-img">
 
-            <div class="card-info">
-                <h2>${clinica.nome}</h2>
-                <p>${clinica.endereco}</p>
-                <p>Horário de Funcionamento: <strong>${clinica.horario}</strong></p>
-                <p>${clinica.descricao}</p>
+        <div class="card-info">
+            <h2>${clinica.nome}</h2>
+            <p>${clinica.endereco}</p>
+            <p>Horário de Funcionamento: <strong>${clinica.horario}</strong></p>
+            <p>${clinica.descricao}</p>
 
-                <button class="btn-main">
-                    Agendar consulta <i class="fa-solid fa-arrow-right"></i>
-                </button>
+            <button class="btn-main">
+                Agendar consulta <i class="fa-solid fa-arrow-right"></i>
+            </button>
 
-                <div class="btn-group">
-                    <a href="${clinica.whatsapp}" target="_blank" class="btn-secondary">
-                        Entre em contato <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-
-                    <a href="${clinica.mapa}" target="_blank" class="btn-secondary">
-                        Mostrar no mapa <i class="fa-solid fa-location-dot"></i>
-                    </a>
-                </div>
+            <div class="btn-group">
+                <a href="../../pages/contato.html" class="btn-secondary">
+                    Entre em contato <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="../../pages/localização.html" class="btn-secondary">
+                    Mostrar no mapa <i class="fa-solid fa-location-dot"></i>
+                </a>
             </div>
         </div>
-        `;
-    }
+    </div>
+    `;
+}
+
 
     function buscarClinica() {
         const termo = document.getElementById("search-input").value.toLowerCase().trim();
