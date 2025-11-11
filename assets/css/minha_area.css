@@ -5,6 +5,48 @@
   font-family: Arial, sans-serif;
 }
 
+header {
+  background-color: #b5faf0;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #26ac98;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease-in-out;
+}
+
+header.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo img {
+  height: 60px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  position: relative;
+}
+
+nav .active {
+  border-bottom: 2px solid #1a1a1a;
+}
+
+
+
 main {
   display: flex;
   justify-content: center;
