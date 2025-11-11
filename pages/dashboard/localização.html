@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Localização | Saúde+</title>
-    <link rel="stylesheet" href="../../assets/css/localizacao.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" href="../../assets/img/logo.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localização | Saúde+</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../assets/css/localizacao.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="../../assets/img/logo.png" type="image/png">
 </head>
+
 <body>
-    <div id="header-placeholder">
-  
+  <div id="header-placeholder"></div>
+
+  <section class="content-wrapper">
+    <div class="info-container">
+      <img id="loc-img" class="clinic-img" src="" alt="Imagem da clínica">
+
+      <div class="info-text">
+        <h2 id="loc-nome"></h2>
+        <p id="loc-endereco"></p>
+        <p>
+          Horário de Funcionamento:
+          <strong id="loc-horario"></strong>
+        </p>
+        <p id="loc-descricao"></p>
+
+        <div class="btn-group">
+          <button id="btnContato" class="btn-secondary">
+            Entre em contato <i class="fa-brands fa-whatsapp"></i>
+          </button>
+          <button id="btnAgendar" class="btn-main">
+            Agendar Consulta <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <section class="content-wrapper">
+    <div class="map-section">
+      <h3>Localização da clínica</h3>
+      <div id="map-box" class="map-box">
+        <p>Carregando mapa...</p>
+      </div>
+    </div>
+  </section>
 
-        <div class="info-container">
-
-            <img src="../../assets/img/clinica.jpg" class="clinic-img">
-
-            <div class="info-text">
-                <h2>Clínica da Mulher</h2>
-                <p>Tv. Arildo Ferreira Da Silva, 5 - Barreira</p>
-                <p>Horário de Funcionamento: <strong>07h às 17h</strong></p>
-                <p>
-                    Clínica Municipal especializada em Atenção Integral<br>
-                    à Saúde da Mulher do município de Saquarema.
-                </p>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn-secondary">
-                    Entre em contato <i class="fa-brands fa-whatsapp"></i>
-                </button>
-                <button class="btn-main">
-                    Agendar Consulta <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="map-section">
-            <h3>Localização da clínica</h3>
-            <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.3675866928606!2d-42.47454832114728!3d-22.89980886491507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x975f002698c093%3A0x2dc6fb2bb6e6caf2!2sCl%C3%ADnica%20da%20Mulher!5e0!3m2!1spt-BR!2sbr!4v1762370217976!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
-            </div>
-        </div>
-
-    </section>
-
-<script src="../../assets/js/dashboard.js"></script>
+  <!-- Scripts -->
+  <script src="../../assets/js/dashboard.js"></script>
+  <script src="../../assets/js/localização.js"></script>
 </body>
 </html>

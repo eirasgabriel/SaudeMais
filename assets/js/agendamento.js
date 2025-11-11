@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("ag-horario").textContent = clinicaSelecionada.horario;
     document.getElementById("ag-descricao").textContent = clinicaSelecionada.descricao;
 
+
     contatoBtn.onclick = () => {
       localStorage.setItem("selectedClinica", clinicaSelecionada.id); // fallback
       window.location.href = `../../pages/dashboard/contato.html?clinica=${clinicaSelecionada.id}`;

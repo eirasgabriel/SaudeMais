@@ -6,8 +6,8 @@ const clinicas = [
     horario: "07h da manhã às 17h da tarde",
     descricao: "Clínica Municipal especializada em Atenção Integral à Saúde da Mulher, oferecendo serviços de ginecologia, obstetrícia, prevenção e acompanhamento médico.",
     imagem: "../../assets/img/clinicadamulher.jpg",
-    whatsapp: "5522999611638",
-    telefone: "5522999611638",
+    whatsapp: "5522999999999",
+    telefone: "5522999999999",
     email: "contato@clinicadamulher.com"
   },
   {
